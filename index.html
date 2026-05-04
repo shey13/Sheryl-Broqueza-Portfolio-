@@ -1,117 +1,1351 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sheryl Broqueza — Campaign, CRM & Web Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{--bg:#0A0A0A;--bg-card:#141414;--text:#F0EDE8;--text-dim:rgba(240,237,232,0.55);--text-muted:rgba(240,237,232,0.3);--accent:#D4A853;--accent-glow:rgba(212,168,83,0.15);--accent2:#7ABECC;--accent3:#C77DBA;--border:rgba(255,255,255,0.08);--border-hover:rgba(255,255,255,0.15);--gradient-1:linear-gradient(135deg,#D4A853 0%,#C77DBA 50%,#7ABECC 100%);--gradient-2:linear-gradient(135deg,rgba(212,168,83,0.2) 0%,rgba(199,125,186,0.2) 50%,rgba(122,190,204,0.2) 100%)}
-  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-  body{font-family:'Outfit',-apple-system,sans-serif;color:var(--text);background:var(--bg);line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  ::selection{background:var(--accent);color:var(--bg)}
-  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:.8}}
-  @keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-  .reveal.visible{opacity:1;transform:translateY(0)}
-  .reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}
-  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:80px 40px;overflow:hidden}
-  .hero-bg{position:absolute;inset:0;z-index:0}
-  .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);animation:pulse 6s ease-in-out infinite}
-  .hero-orb-1{width:500px;height:500px;top:-10%;right:-5%;background:radial-gradient(circle,rgba(212,168,83,.2) 0%,transparent 70%)}
-  .hero-orb-2{width:400px;height:400px;bottom:-10%;left:10%;background:radial-gradient(circle,rgba(122,190,204,.15) 0%,transparent 70%);animation-delay:2s}
-  .hero-orb-3{width:300px;height:300px;top:30%;left:40%;background:radial-gradient(circle,rgba(199,125,186,.1) 0%,transparent 70%);animation-delay:4s}
-  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 30%,transparent 100%)}
-  .hero-content{position:relative;z-index:1;text-align:center;max-width:800px;animation:fadeUp 1s cubic-bezier(.16,1,.3,1) forwards}
-  .hero-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:28px;animation:fadeIn 1s .3s both}
-  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,72px);font-weight:400;line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
-  .hero h1 .gradient-text{background:var(--gradient-1);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientMove 4s ease-in-out infinite}
-  .hero-subtitle{font-size:18px;color:var(--text-dim);max-width:560px;margin:0 auto 40px;line-height:1.7;font-weight:300;animation:fadeIn 1s .5s both}
-  .hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;animation:fadeIn 1s .7s both}
-  .hero-stat{text-align:center}
-  .hero-stat-value{font-family:'Playfair Display',serif;font-size:28px;color:var(--text);font-weight:600}
-  .hero-stat-label{font-size:11px;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
-  .hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);animation:float 3s ease-in-out infinite;z-index:1}
-  .hero-scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--accent),transparent);margin:0 auto 8px}
-  .hero-scroll-text{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted)}
-  .nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.85);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);padding:0 40px}
-  .nav-inner{max-width:1000px;margin:0 auto;display:flex;justify-content:center;gap:0}
-  .nav a{font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;padding:18px 24px;position:relative;transition:color .3s}
-  .nav a::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:1px;background:var(--accent);transition:left .3s,right .3s}
-  .nav a:hover{color:var(--text)}.nav a:hover::after{left:24px;right:24px}
-  .section{max-width:1000px;margin:0 auto;padding:100px 40px}
-  .section-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
-  .section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,40px);font-weight:400;margin-bottom:12px;letter-spacing:-.5px}
-  .section-desc{color:var(--text-dim);font-size:16px;max-width:600px;line-height:1.75;font-weight:300}
-  .achievements-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
-  .achievement-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px 24px;text-align:center;position:relative;overflow:hidden;transition:all .4s cubic-bezier(.16,1,.3,1);cursor:default}
-  .achievement-card::before{content:'';position:absolute;inset:0;background:var(--gradient-2);opacity:0;transition:opacity .4s}
-  .achievement-card:hover{border-color:var(--border-hover);transform:translateY(-4px)}.achievement-card:hover::before{opacity:1}
-  .achievement-value{font-family:'Playfair Display',serif;font-size:36px;font-weight:600;position:relative;z-index:1;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
-  .achievement-label{font-size:12px;color:var(--text-dim);line-height:1.5;position:relative;z-index:1}
-  .achievement-context{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:10px;letter-spacing:.5px;position:relative;z-index:1}
-  .case-study{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;margin-bottom:48px;overflow:hidden;transition:border-color .4s}
-  .case-study:hover{border-color:var(--border-hover)}
-  .cs-hero{padding:48px 48px 0}.cs-number{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--accent);margin-bottom:12px}
-  .cs-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;line-height:1.25;margin-bottom:16px;letter-spacing:-.3px}
-  .cs-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
-  .cs-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:100px;border:1px solid var(--border);color:var(--text-dim)}
-  .cs-tag.gold{border-color:rgba(212,168,83,.3);color:var(--accent)}.cs-tag.blue{border-color:rgba(122,190,204,.3);color:var(--accent2)}.cs-tag.purple{border-color:rgba(199,125,186,.3);color:var(--accent3)}
-  .cs-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:1px solid var(--border)}
-  .cs-metric{padding:24px;text-align:center;border-right:1px solid var(--border);transition:background .3s}.cs-metric:last-child{border-right:none}.cs-metric:hover{background:rgba(255,255,255,.02)}
-  .cs-metric-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:var(--accent)}.cs-metric-value.blue{color:var(--accent2)}.cs-metric-value.purple{color:var(--accent3)}
-  .cs-metric-label{font-size:11px;color:var(--text-muted);margin-top:4px;letter-spacing:.3px}
-  .cs-body{padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:40px}.cs-block-full{grid-column:1/-1}
-  .cs-block h4{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-  .cs-block p{font-size:15px;color:var(--text-dim);line-height:1.75;font-weight:300}.cs-block strong{color:var(--text);font-weight:500}.cs-block em{color:var(--text);font-style:italic}
-  .cs-block ul{list-style:none;padding:0}.cs-block ul li{font-size:15px;color:var(--text-dim);line-height:1.75;padding-left:20px;position:relative;margin-bottom:8px;font-weight:300}
-  .cs-block ul li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
-  .timeline{position:relative;padding-left:24px}.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--accent),var(--accent2))}
-  .timeline-item{position:relative;padding:16px 0 16px 24px;border-bottom:1px solid var(--border)}.timeline-item:last-child{border-bottom:none}
-  .timeline-item::before{content:'';position:absolute;left:-28px;top:22px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);z-index:1}
-  .timeline-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:4px}
-  .timeline-desc{font-size:14px;color:var(--text-dim);line-height:1.6;font-weight:300}
-  .timeline-result{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);font-weight:500;margin-top:6px}
-  .approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
-  .approach-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:36px 28px;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
-  .approach-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient-1);opacity:0;transition:opacity .3s}
-  .approach-card:hover{border-color:var(--border-hover);transform:translateY(-4px)}.approach-card:hover::after{opacity:1}
-  .approach-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:16px}
-  .approach-card h4{font-size:17px;font-weight:600;margin-bottom:12px;color:var(--text)}
-  .approach-card p{font-size:14px;color:var(--text-dim);line-height:1.7;font-weight:300}
-  .footer{border-top:1px solid var(--border);padding:80px 40px;text-align:center;position:relative;overflow:hidden}
-  .footer-orb{position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(100px);top:-50%;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(212,168,83,.1) 0%,transparent 70%)}
-  .footer-content{position:relative;z-index:1}
-  .footer-name{font-family:'Playfair Display',serif;font-size:32px;font-weight:400;margin-bottom:12px}
-  .footer-role{font-size:15px;color:var(--text-dim);font-weight:300;margin-bottom:32px}
-  .footer-links{display:flex;justify-content:center;gap:12px}
-  .footer-link{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:var(--text-muted);text-decoration:none;padding:12px 24px;border:1px solid var(--border);border-radius:100px;transition:all .3s}
-  .footer-link:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-glow)}
-  .footer-open{font-size:13px;color:var(--text-muted);margin-top:32px;font-style:italic}
-  .divider{max-width:1000px;margin:0 auto;padding:0 40px}.divider hr{border:none;height:1px;background:var(--border)}
-  @media(max-width:768px){.hero{padding:60px 24px;min-height:90vh}.hero h1{font-size:36px}.hero-scroll{display:none}.section{padding:64px 24px}.achievements-grid{grid-template-columns:repeat(2,1fr);gap:12px}.achievement-value{font-size:28px}.achievement-card{padding:24px 16px}.cs-hero{padding:32px 24px 0}.cs-body{padding:32px 24px;grid-template-columns:1fr;gap:28px}.cs-metrics{grid-template-columns:repeat(2,1fr)}.cs-metric{border-bottom:1px solid var(--border)}.approach-grid{grid-template-columns:1fr}.nav{padding:0 16px}.nav a{padding:16px 14px;font-size:11px}.footer{padding:56px 24px}.footer-links{flex-direction:column;align-items:center}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sheryl Broqueza — Campaign, CRM & Web Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0A0A;
+      --bg-card: #141414;
+      --text: #F0EDE8;
+      --text-dim: rgba(240, 237, 232, 0.55);
+      --text-muted: rgba(240, 237, 232, 0.3);
+      --accent: #D4A853;
+      --accent-glow: rgba(212, 168, 83, 0.15);
+      --accent2: #7ABECC;
+      --accent3: #C77DBA;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      --gradient-1: linear-gradient(135deg, #D4A853 0%, #C77DBA 50%, #7ABECC 100%);
+      --gradient-2: linear-gradient(135deg, rgba(212, 168, 83, 0.2) 0%, rgba(199, 125, 186, 0.2) 50%, rgba(122, 190, 204, 0.2) 100%)
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--bg)
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: .4
+      }
+
+      50% {
+        opacity: .8
+      }
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%
+      }
+
+      50% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: 0% 50%
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-8px)
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform .8s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .reveal-delay-1 {
+      transition-delay: .1s
+    }
+
+    .reveal-delay-2 {
+      transition-delay: .2s
+    }
+
+    .reveal-delay-3 {
+      transition-delay: .3s
+    }
+
+    .reveal-delay-4 {
+      transition-delay: .4s
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 80px 40px;
+      overflow: hidden
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: pulse 6s ease-in-out infinite
+    }
+
+    .hero-orb-1 {
+      width: 500px;
+      height: 500px;
+      top: -10%;
+      right: -5%;
+      background: radial-gradient(circle, rgba(212, 168, 83, .2) 0%, transparent 70%)
+    }
+
+    .hero-orb-2 {
+      width: 400px;
+      height: 400px;
+      bottom: -10%;
+      left: 10%;
+      background: radial-gradient(circle, rgba(122, 190, 204, .15) 0%, transparent 70%);
+      animation-delay: 2s
+    }
+
+    .hero-orb-3 {
+      width: 300px;
+      height: 300px;
+      top: 30%;
+      left: 40%;
+      background: radial-gradient(circle, rgba(199, 125, 186, .1) 0%, transparent 70%);
+      animation-delay: 4s
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, .02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      animation: fadeUp 1s cubic-bezier(.16, 1, .3, 1) forwards
+    }
+
+    .hero-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      animation: fadeIn 1s .3s both
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 7vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -1px
+    }
+
+    .hero h1 .gradient-text {
+      background: var(--gradient-1);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientMove 4s ease-in-out infinite
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      font-weight: 300;
+      animation: fadeIn 1s .5s both
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      animation: fadeIn 1s .7s both
+    }
+
+    .hero-stat {
+      text-align: center
+    }
+
+    .hero-stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--text);
+      font-weight: 600
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 4px
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: float 3s ease-in-out infinite;
+      z-index: 1
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      margin: 0 auto 8px
+    }
+
+    .hero-scroll-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted)
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, .85);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px
+    }
+
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 0
+    }
+
+    .nav a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 18px 24px;
+      position: relative;
+      transition: color .3s
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      right: 50%;
+      height: 1px;
+      background: var(--accent);
+      transition: left .3s, right .3s
+    }
+
+    .nav a:hover {
+      color: var(--text)
+    }
+
+    .nav a:hover::after {
+      left: 24px;
+      right: 24px
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 100px 40px
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      margin-bottom: 12px;
+      letter-spacing: -.5px
+    }
+
+    .section-desc {
+      color: var(--text-dim);
+      font-size: 16px;
+      max-width: 600px;
+      line-height: 1.75;
+      font-weight: 300
+    }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 56px
+    }
+
+    .achievement-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all .4s cubic-bezier(.16, 1, .3, 1);
+      cursor: default
+    }
+
+    .achievement-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-2);
+      opacity: 0;
+      transition: opacity .4s
+    }
+
+    .achievement-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px)
+    }
+
+    .achievement-card:hover::before {
+      opacity: 1
+    }
+
+    .achievement-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px
+    }
+
+    .achievement-label {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.5;
+      position: relative;
+      z-index: 1
+    }
+
+    .achievement-context {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      letter-spacing: .5px;
+      position: relative;
+      z-index: 1
+    }
+
+    .case-study {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      margin-bottom: 48px;
+      overflow: hidden;
+      transition: border-color .4s
+    }
+
+    .case-study:hover {
+      border-color: var(--border-hover)
+    }
+
+    .cs-hero {
+      padding: 48px 48px 0
+    }
+
+    .cs-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 12px
+    }
+
+    .cs-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -.3px
+    }
+
+    .cs-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px
+    }
+
+    .cs-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--text-dim)
+    }
+
+    .cs-tag.gold {
+      border-color: rgba(212, 168, 83, .3);
+      color: var(--accent)
+    }
+
+    .cs-tag.blue {
+      border-color: rgba(122, 190, 204, .3);
+      color: var(--accent2)
+    }
+
+    .cs-tag.purple {
+      border-color: rgba(199, 125, 186, .3);
+      color: var(--accent3)
+    }
+
+    .cs-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      border-top: 1px solid var(--border)
+    }
+
+    .cs-metric {
+      padding: 24px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      transition: background .3s
+    }
+
+    .cs-metric:last-child {
+      border-right: none
+    }
+
+    .cs-metric:hover {
+      background: rgba(255, 255, 255, .02)
+    }
+
+    .cs-metric-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--accent)
+    }
+
+    .cs-metric-value.blue {
+      color: var(--accent2)
+    }
+
+    .cs-metric-value.purple {
+      color: var(--accent3)
+    }
+
+    .cs-metric-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      letter-spacing: .3px
+    }
+
+    .cs-body {
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px
+    }
+
+    .cs-block-full {
+      grid-column: 1/-1
+    }
+
+    .cs-block h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px
+    }
+
+    .cs-block p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      font-weight: 300
+    }
+
+    .cs-block strong {
+      color: var(--text);
+      font-weight: 500
+    }
+
+    .cs-block em {
+      color: var(--text);
+      font-style: italic
+    }
+
+    .cs-block ul {
+      list-style: none;
+      padding: 0
+    }
+
+    .cs-block ul li {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+      font-weight: 300
+    }
+
+    .cs-block ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent)
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 24px
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2))
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 16px 0 16px 24px;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 22px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      z-index: 1
+    }
+
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      margin-bottom: 4px
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      font-weight: 300
+    }
+
+    .timeline-result {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 6px
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px
+    }
+
+    .approach-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      transition: all .4s cubic-bezier(.16, 1, .3, 1);
+      position: relative;
+      overflow: hidden
+    }
+
+    .approach-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity .3s
+    }
+
+    .approach-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px)
+    }
+
+    .approach-card:hover::after {
+      opacity: 1
+    }
+
+    .approach-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 600;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 16px
+    }
+
+    .approach-card h4 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text)
+    }
+
+    .approach-card p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      font-weight: 300
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 80px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .footer-orb {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      filter: blur(100px);
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(212, 168, 83, .1) 0%, transparent 70%)
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 1
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 12px
+    }
+
+    .footer-role {
+      font-size: 15px;
+      color: var(--text-dim);
+      font-weight: 300;
+      margin-bottom: 32px
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px
+    }
+
+    .footer-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 12px 24px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      transition: all .3s
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-glow)
+    }
+
+    .footer-open {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 32px;
+      font-style: italic
+    }
+
+    .divider {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px
+    }
+
+    .divider hr {
+      border: none;
+      height: 1px;
+      background: var(--border)
+    }
+
+    @media(max-width:768px) {
+      .hero {
+        padding: 60px 24px;
+        min-height: 90vh
+      }
+
+      .hero h1 {
+        font-size: 36px
+      }
+
+      .hero-scroll {
+        display: none
+      }
+
+      .section {
+        padding: 64px 24px
+      }
+
+      .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px
+      }
+
+      .achievement-value {
+        font-size: 28px
+      }
+
+      .achievement-card {
+        padding: 24px 16px
+      }
+
+      .cs-hero {
+        padding: 32px 24px 0
+      }
+
+      .cs-body {
+        padding: 32px 24px;
+        grid-template-columns: 1fr;
+        gap: 28px
+      }
+
+      .cs-metrics {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .cs-metric {
+        border-bottom: 1px solid var(--border)
+      }
+
+      .approach-grid {
+        grid-template-columns: 1fr
+      }
+
+      .nav {
+        padding: 0 16px
+      }
+
+      .nav a {
+        padding: 16px 14px;
+        font-size: 11px
+      }
+
+      .footer {
+        padding: 56px 24px
+      }
+
+      .footer-links {
+        flex-direction: column;
+        align-items: center
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="hero"><div class="hero-bg"><div class="hero-orb hero-orb-1"></div><div class="hero-orb hero-orb-2"></div><div class="hero-orb hero-orb-3"></div><div class="hero-grid"></div></div><div class="hero-content"><div class="hero-label">Campaign &#183; CRM &#183; Web</div><h1>Sheryl Broqueza<br><span class="gradient-text">Making the numbers move.</span></h1><p class="hero-subtitle">Leading campaign, CRM, and web teams across Southeast Asia&#8217;s largest fashion e-commerce platform &#8212; shipping experiments, automation, and interactive experiences that drive real revenue.</p><div class="hero-stats"><div class="hero-stat"><div class="hero-stat-value">~15</div><div class="hero-stat-label">Team Members</div></div><div class="hero-stat"><div class="hero-stat-value">5</div><div class="hero-stat-label">Markets</div></div><div class="hero-stat"><div class="hero-stat-value">6.5M</div><div class="hero-stat-label">CRM Users</div></div><div class="hero-stat"><div class="hero-stat-value">10+</div><div class="hero-stat-label">A/B Programs</div></div></div></div><div class="hero-scroll"><div class="hero-scroll-line"></div><div class="hero-scroll-text">Scroll</div></div></header>
-<nav class="nav"><div class="nav-inner"><a href="#achievements">Achievements</a><a href="#case-studies">Case Studies</a><a href="#approach">Approach</a><a href="#contact">Contact</a></div></nav>
-<section class="section" id="achievements"><div class="reveal"><div class="section-label">At a Glance</div><div class="section-title">Selected Achievements</div><p class="section-desc">Key results across campaign management, CRM, web optimization, and experimentation at ZALORA.</p></div><div class="achievements-grid"><div class="achievement-card reveal reveal-delay-1"><div class="achievement-value">+435%</div><div class="achievement-label">CTR Uplift</div><div class="achievement-context">SKU vs Editorial &#183; Women</div></div><div class="achievement-card reveal reveal-delay-2"><div class="achievement-value">&#8364;134K+</div><div class="achievement-label">Single Campaign NMV</div><div class="achievement-context">Nike Dunks &#183; 11.11</div></div><div class="achievement-card reveal reveal-delay-3"><div class="achievement-value">1,188%</div><div class="achievement-label">First-Year ROI</div><div class="achievement-context">n8n Automation &#183; CEO-Approved</div></div><div class="achievement-card reveal reveal-delay-4"><div class="achievement-value">52%</div><div class="achievement-label">Daily Style Feed CTR</div><div class="achievement-context">vs 26.98% Baseline &#183; ~2x</div></div><div class="achievement-card reveal reveal-delay-1"><div class="achievement-value">2x</div><div class="achievement-label">Reactivation CTR</div><div class="achievement-context">0.70% &#8594; 1.49% &#183; Up to 4%</div></div><div class="achievement-card reveal reveal-delay-2"><div class="achievement-value">+15%</div><div class="achievement-label">Homepage 2.0 CTR</div><div class="achievement-context">iOS Uplift &#183; All Markets</div></div><div class="achievement-card reveal reveal-delay-3"><div class="achievement-value">+164%</div><div class="achievement-label">Daily NMV Uplift</div><div class="achievement-context">10MOST Voucher Test</div></div><div class="achievement-card reveal reveal-delay-4"><div class="achievement-value">6.5M</div><div class="achievement-label">CRM Eligible Users</div><div class="achievement-context">Across SEA Markets</div></div></div></section>
-<div class="divider"><hr></div>
-<section class="section" id="case-studies"><div class="reveal"><div class="section-label">Deep Dives</div><div class="section-title">Case Studies</div><p class="section-desc">From problem to hypothesis to test to business impact &#8212; including the experiments that didn&#8217;t go as planned.</p></div>
-<article class="case-study reveal" style="margin-top:48px"><div class="cs-hero"><div class="cs-number">CASE STUDY 01</div><h3 class="cs-title">SKU-Led vs Editorial Banner Creative</h3><div class="cs-tags"><span class="cs-tag gold">CRO</span><span class="cs-tag blue">A/B Test</span><span class="cs-tag">Onsite</span></div></div><div class="cs-metrics"><div class="cs-metric"><div class="cs-metric-value">+435%</div><div class="cs-metric-label">CTR Uplift (Women)</div></div><div class="cs-metric"><div class="cs-metric-value blue">+206%</div><div class="cs-metric-label">CTR Uplift (Men)</div></div><div class="cs-metric"><div class="cs-metric-value">+148%</div><div class="cs-metric-label">NMV Uplift (Women)</div></div><div class="cs-metric"><div class="cs-metric-value purple">+34%</div><div class="cs-metric-label">CR Uplift (Women)</div></div></div><div class="cs-body"><div class="cs-block"><h4>The Problem</h4><p>ZALORA&#8217;s onsite banners relied on editorial/lifestyle imagery &#8212; aspirational but abstract. Users scanned past banners without engaging because the creative didn&#8217;t show them <em>what they could buy</em>.</p></div><div class="cs-block"><h4>The Hypothesis</h4><p>Showing actual product SKUs (real items at real prices) would outperform editorial imagery by reducing cognitive load. Users scan banners in ~2.6 seconds &#8212; SKU imagery provides faster comprehension.</p></div><div class="cs-block cs-block-full"><h4>Iteration Timeline</h4><div class="timeline"><div class="timeline-item"><div class="timeline-date">MAY 2022 &#183; WOMEN</div><div class="timeline-desc">Initial 1-day test. SKU-led vs Editorial. Massive uplift confirmed.</div><div class="timeline-result">+435% CTR &#183; +148% NMV &#183; +34% CR</div></div><div class="timeline-item"><div class="timeline-date">MAY 2022 &#183; MEN</div><div class="timeline-desc">Same-day test on Men segment. Strong uplift across all metrics.</div><div class="timeline-result">+206% CTR &#183; +26% NMV &#183; +31% CR</div></div><div class="timeline-item"><div class="timeline-date">FEB 2023 &#183; EXTENDED 4-DAY</div><div class="timeline-desc">Extended rerun. CTR held (+47% Women, +23% Men) but CR dropped due to high click volume. <strong>Key learning: high CTR does not equal high CR at scale.</strong></div><div class="timeline-result">CTR held up &#183; CR dropped at volume</div></div></div></div><div class="cs-block"><h4>The Learning</h4><p>SKU-led creative drives dramatically higher engagement &#8212; but at volume, CR can decline as more browsers enter the funnel. Solution: <strong>SKU banners for flash sales (high intent), editorial for always-on (brand building)</strong>. Codified in ZALORA&#8217;s creative playbook.</p></div><div class="cs-block"><h4>Why This Matters</h4><p>The extended rerun&#8217;s &#8220;failure&#8221; was equally valuable &#8212; it prevented a blanket rollout that would have degraded CR. The output was a <strong>nuanced, context-dependent creative strategy</strong>.</p></div></div></article>
-<article class="case-study reveal"><div class="cs-hero"><div class="cs-number">CASE STUDY 02</div><h3 class="cs-title">Daily Style Feed &#8212; Personalized Discovery at Scale</h3><div class="cs-tags"><span class="cs-tag purple">Personalization</span><span class="cs-tag blue">Product Strategy</span><span class="cs-tag gold">All Markets</span></div></div><div class="cs-metrics"><div class="cs-metric"><div class="cs-metric-value">52%</div><div class="cs-metric-label">Campaign CTR</div></div><div class="cs-metric"><div class="cs-metric-value blue">26.98%</div><div class="cs-metric-label">Standard RecFeed CTR</div></div><div class="cs-metric"><div class="cs-metric-value">31.7%</div><div class="cs-metric-label">Add-to-Cart Rate</div></div><div class="cs-metric"><div class="cs-metric-value purple">5.5%</div><div class="cs-metric-label">Attributed Purchase Rate</div></div></div><div class="cs-body"><div class="cs-block"><h4>The Problem</h4><p>Standard homepage RecFeed: 26.98% CTR, 28.29% add-to-cart &#8212; plateauing. Users with zero or low product detail views were bouncing without discovering products.</p></div><div class="cs-block"><h4>The Solution</h4><p>Built a dedicated <strong>&#8220;Daily Style Feed&#8221;</strong> on the app home screen &#8212; curated, campaign-aligned, full content flexibility. Routed low/zero-PDV users via dedicated onsite pages. Pure product-first discovery.</p></div><div class="cs-block cs-block-full"><h4>Architecture</h4><ul><li>Discovery engine on app home screen with personalized product exposure</li><li>Full content flexibility &#8212; no category or homepage logic constraints</li><li>Low-PDV user routing via dedicated onsite pages</li><li>Social media channels augmenting awareness and traffic</li><li><strong>Rolled out live across all ZALORA markets</strong></li></ul></div><div class="cs-block"><h4>The Results</h4><p>Nearly <strong>doubled CTR</strong> vs standard RecFeed (52% vs 26.98%). Full funnel: 48.5% product click &#8594; 98.5% to product view &#8594; 30.9% PDP-to-cart &#8594; 5.5% attributed purchase. Now permanent across all markets.</p></div><div class="cs-block"><h4>Why This Matters</h4><p>Not a one-off test &#8212; a <strong>permanent product</strong> live across every ZALORA market. A structural improvement to product discovery infrastructure.</p></div></div></article>
-<article class="case-study reveal"><div class="cs-hero"><div class="cs-number">CASE STUDY 03</div><h3 class="cs-title">Voucher Mechanics &#8212; CTA vs Code Display</h3><div class="cs-tags"><span class="cs-tag gold">CRO</span><span class="cs-tag">A/B Test Series</span><span class="cs-tag blue">3 Iterations</span></div></div><div class="cs-metrics"><div class="cs-metric"><div class="cs-metric-value">+48%</div><div class="cs-metric-label">NMV Uplift (Best)</div></div><div class="cs-metric"><div class="cs-metric-value blue">+14.53%</div><div class="cs-metric-label">Total CTR Uplift</div></div><div class="cs-metric"><div class="cs-metric-value">+9%</div><div class="cs-metric-label">CR Uplift (Flash)</div></div><div class="cs-metric"><div class="cs-metric-value purple">3 tests</div><div class="cs-metric-label">Iterated Validation</div></div></div><div class="cs-body"><div class="cs-block"><h4>The Problem</h4><p>Voucher banners displayed promo codes directly. Was showing the code upfront helping conversion, or adding visual noise and reducing click incentive?</p></div><div class="cs-block"><h4>The Hypothesis</h4><p>Removing the visible code and adding a clear CTA (&#8220;Shop Now&#8221;) would increase CTR and CR by creating stronger forward momentum. Code auto-applies at checkout.</p></div><div class="cs-block cs-block-full"><h4>Iteration Timeline</h4><div class="timeline"><div class="timeline-item"><div class="timeline-date">APR 17, 2023 &#183; FLASH SALE</div><div class="timeline-desc">First test: CTA banner vs Code banner. 1&#8211;7 PM flash. Women/Men/Kids.</div><div class="timeline-result">+14.53% CTR &#183; +9% CR &#183; +14% NMV</div></div><div class="timeline-item"><div class="timeline-date">APR 20, 2023 &#183; FLASH V2</div><div class="timeline-desc">Repeat with different time window (2&#8211;8 PM). Confirmed direction.</div><div class="timeline-result">+6.98% CTR &#183; +6% CR &#183; +48% NMV</div></div><div class="timeline-item"><div class="timeline-date">MAY 2&#8211;4, 2023 &#183; BASELINE</div><div class="timeline-desc">Extended 1-week baseline. Validated effect holds beyond flash urgency.</div><div class="timeline-result">+4.69% CTR &#183; +2% CR &#183; +48% NMV</div></div></div></div><div class="cs-block"><h4>The Learning</h4><p>&#8220;Without Code + CTA&#8221; won across <strong>all three iterations</strong>. Not a novelty effect. Now standard for voucher campaigns.</p></div><div class="cs-block"><h4>Why This Matters</h4><p>Demonstrates <strong>iterated validation</strong> &#8212; three progressively different conditions. A small UX change unlocked double-digit revenue uplift at zero cost.</p></div></div></article>
-<article class="case-study reveal"><div class="cs-hero"><div class="cs-number">CASE STUDY 04</div><h3 class="cs-title">n8n Marketing Automation &#8212; From Manual to 1,188% ROI</h3><div class="cs-tags"><span class="cs-tag gold">Automation</span><span class="cs-tag purple">AI Integration</span><span class="cs-tag blue">CEO-Approved</span></div></div><div class="cs-metrics"><div class="cs-metric"><div class="cs-metric-value">1,188%</div><div class="cs-metric-label">First-Year ROI</div></div><div class="cs-metric"><div class="cs-metric-value blue">0.93 mo</div><div class="cs-metric-label">Payback Period</div></div><div class="cs-metric"><div class="cs-metric-value">156 hrs</div><div class="cs-metric-label">Annual Hours Saved</div></div><div class="cs-metric"><div class="cs-metric-value purple">&#8364;10K+</div><div class="cs-metric-label">Uplift Protected/yr</div></div></div><div class="cs-body"><div class="cs-block"><h4>The Problem</h4><p>App Grid content across 6 segments updated manually every week &#8212; 30 min/segment, 3 hours/cycle. Error-prone, timing risks for critical campaigns. Scaling to 10+ segments was unsustainable.</p></div><div class="cs-block"><h4>The Solution</h4><p>Built an n8n workflow: ingest approved copy &#8594; validate segment mapping &#8594; transform to API schema &#8594; batch update with retry, logging, Slack alerts, and rollback. Also built a trend intelligence pipeline (n8n + GPT + TikTok + Pinterest).</p></div><div class="cs-block cs-block-full"><h4>Business Case</h4><ul><li><strong>Build cost:</strong> &#8364;920 (10 mandays)</li><li><strong>Labour savings:</strong> &#8364;936/year (156 hours eliminated)</li><li><strong>Campaign uplift protected:</strong> &#8364;10,000/year (5 campaigns &#215; &#8364;200K &#215; 1%)</li><li><strong>Error reduction:</strong> &#8364;216/year</li><li><strong>Scalability:</strong> &#8364;624/year (4 new segments, no headcount)</li><li><strong>Net first-year return:</strong> &#8364;10,928 &#8212; <strong>1,187.8% ROI</strong></li></ul></div><div class="cs-block"><h4>The Learning</h4><p>The biggest win was <strong>protecting campaign timing</strong>. Reframing from &#8220;saves 3 hours/week&#8221; to &#8220;protects &#8364;10K/year&#8221; got CEO approval. Always tie automation to revenue impact.</p></div><div class="cs-block"><h4>Why This Matters</h4><p>Shows ability to <strong>think commercially about technical solutions</strong> &#8212; building both the ROI model and the actual implementation.</p></div></div></article>
-<article class="case-study reveal"><div class="cs-hero"><div class="cs-number">BONUS</div><h3 class="cs-title">CRM Reactivation &#8212; 2x Click-Through Uplift</h3><div class="cs-tags"><span class="cs-tag purple">CRM</span><span class="cs-tag">Personalization</span><span class="cs-tag blue">Multi-Market</span></div></div><div class="cs-metrics"><div class="cs-metric"><div class="cs-metric-value">2x</div><div class="cs-metric-label">CTR Uplift</div></div><div class="cs-metric"><div class="cs-metric-value blue">0.70&#8594;1.49%</div><div class="cs-metric-label">Before &#8594; After</div></div><div class="cs-metric"><div class="cs-metric-value">50%</div><div class="cs-metric-label">Click-to-Browse</div></div><div class="cs-metric"><div class="cs-metric-value purple">29%</div><div class="cs-metric-label">Browse-to-ATC</div></div></div><div class="cs-body"><div class="cs-block"><h4>The Problem</h4><p>Reactivation campaigns for app-installed users delivered 0.70% CTR &#8212; generic messaging didn&#8217;t account for user behavior. High install base, low re-engagement.</p></div><div class="cs-block"><h4>The Solution</h4><p>Revamped with personalized messaging and product recs tailored to browse/purchase history. Doubled CTR to 1.49% (PH/ID), up to <strong>4% in SG, MY, HK</strong>. Downstream: 50% click-to-browse, 29% browse-to-ATC &#8212; genuine intent, not empty clicks.</p></div></div></article></section>
-<div class="divider"><hr></div>
-<section class="section" id="approach"><div class="reveal"><div class="section-label">Methodology</div><div class="section-title">How I Work</div><p class="section-desc">Every experiment follows the same discipline &#8212; whether it&#8217;s a 3-hour flash test or a multi-market product launch.</p></div><div class="approach-grid"><div class="approach-card reveal reveal-delay-1"><div class="approach-num">01</div><h4>Observe &amp; Hypothesize</h4><p>Start with data, not opinions. Identify underperforming metrics, segment the problem, form a testable hypothesis grounded in user behavior.</p></div><div class="approach-card reveal reveal-delay-2"><div class="approach-num">02</div><h4>Test with Discipline</h4><p>Controlled experiments with clean segmentation &#8212; platform, audience, and duration defined upfront. I iterate across conditions to validate results are robust.</p></div><div class="approach-card reveal reveal-delay-3"><div class="approach-num">03</div><h4>Scale &amp; Codify</h4><p>Winning patterns become playbooks. Learnings documented so one test in PH benefits SG, ID, MY, and HK without re-running.</p></div></div></section>
-<footer class="footer" id="contact"><div class="footer-orb"></div><div class="footer-content reveal"><div class="footer-name">Sheryl B. Broqueza</div><div class="footer-role">Senior Manager &#8212; Campaign, CRM &amp; Web &#183; ZALORA Group<br>Manila, Philippines</div><div class="footer-links"><a href="mailto:sbroqueza13@gmail.com" class="footer-link">Email</a><a href="https://www.linkedin.com/in/sheryl-broqueza/" target="_blank" class="footer-link">LinkedIn</a></div><div class="footer-open">Open to Singapore relocation &#183; Employment Pass ready</div></div></footer>
-<script>
-const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-document.querySelectorAll('.nav a').forEach(link=>{link.addEventListener('click',(e)=>{e.preventDefault();const target=document.querySelector(link.getAttribute('href'));if(target)target.scrollIntoView({behavior:'smooth'})})});
-</script>
-</body></html>
+  <header class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-label">Campaign &#183; CRM &#183; Web</div>
+      <h1>Sheryl Broqueza<br><span class="gradient-text">Making the numbers move.</span></h1>
+      <p class="hero-subtitle">Leading campaign, CRM, and web teams across Southeast Asia&#8217;s largest fashion
+        e-commerce platform &#8212; shipping experiments, automation, and interactive experiences that drive real
+        revenue.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value">~15</div>
+          <div class="hero-stat-label">Team Members</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">2(3)</div>
+          <div class="hero-stat-label">Markets</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">6.5M</div>
+          <div class="hero-stat-label">CRM Users</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">10+</div>
+          <div class="hero-stat-label">A/B Programs</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <div class="hero-scroll-text">Scroll</div>
+    </div>
+  </header>
+  <nav class="nav">
+    <div class="nav-inner"><a href="#achievements">Achievements</a><a href="#case-studies">Case Studies</a><a
+        href="#approach">Approach</a><a href="#contact">Contact</a></div>
+  </nav>
+  <section class="section" id="achievements">
+    <div class="reveal">
+      <div class="section-label">At a Glance</div>
+      <div class="section-title">Selected Achievements</div>
+      <p class="section-desc">Key results across campaign management, CRM, web optimization, and experimentation at
+        ZALORA.</p>
+    </div>
+    <div class="achievements-grid">
+      <div class="achievement-card reveal reveal-delay-1">
+        <div class="achievement-value">+435%</div>
+        <div class="achievement-label">CTR Uplift</div>
+        <div class="achievement-context">SKU vs Editorial &#183; Women</div>
+      </div>
+      <div class="achievement-card reveal reveal-delay-2">
+        <div class="achievement-value">&#8364;134K+</div>
+        <div class="achievement-label">Single Campaign NMV</div>
+        <div class="achievement-context">Nike Dunks &#183; 11.11</div>
+      </div>
+      <div class="achievement-card reveal reveal-delay-3">
+        <div class="achievement-value">1,188%</div>
+        <div class="achievement-label">First-Year ROI</div>
+        <div class="achievement-context">n8n Automation &#183; CEO-Approved</div>
+      </div>
+      <div class="achievement-card reveal reveal-delay-4">
+        <div class="achievement-value">52%</div>
+        <div class="achievement-label">Daily Style Feed CTR</div>
+        <div class="achievement-context">vs 26.98% Baseline &#183; ~2x</div>
+      </div>
+      <div class="achievement-card reveal reveal-delay-1">
+        <div class="achievement-value">2x</div>
+        <div class="achievement-label">Reactivation CTR</div>
+        <div class="achievement-context">0.70% &#8594; 1.49% &#183; Up to 4%</div>
+      </div>
+      <div class="achievement-card reveal reveal-delay-2">
+        <div class="achievement-value">+15%</div>
+        <div class="achievement-label">Homepage 2.0 CTR</div>
+        <div class="achievement-context">iOS Uplift &#183; All Markets</div>
+      </div>
+      <div class="achievement-card reveal reveal-delay-3">
+        <div class="achievement-value">+164%</div>
+        <div class="achievement-label">Daily NMV Uplift</div>
+        <div class="achievement-context">10MOST Voucher Test</div>
+      </div>
+      <div class="achievement-card reveal reveal-delay-4">
+        <div class="achievement-value">6.5M</div>
+        <div class="achievement-label">CRM Eligible Users</div>
+        <div class="achievement-context">Across SEA Markets</div>
+      </div>
+    </div>
+  </section>
+  <div class="divider">
+    <hr>
+  </div>
+  <section class="section" id="case-studies">
+    <div class="reveal">
+      <div class="section-label">Deep Dives</div>
+      <div class="section-title">Case Studies</div>
+      <p class="section-desc">From problem to hypothesis to test to business impact &#8212; including the experiments
+        that didn&#8217;t go as planned.</p>
+    </div>
+    <article class="case-study reveal" style="margin-top:48px">
+      <div class="cs-hero">
+        <div class="cs-number">CASE STUDY 01</div>
+        <h3 class="cs-title">SKU-Led vs Editorial Banner Creative</h3>
+        <div class="cs-tags"><span class="cs-tag gold">CRO</span><span class="cs-tag blue">A/B Test</span><span
+            class="cs-tag">Onsite</span></div>
+      </div>
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <div class="cs-metric-value">+435%</div>
+          <div class="cs-metric-label">CTR Uplift (Women)</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value blue">+206%</div>
+          <div class="cs-metric-label">CTR Uplift (Men)</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value">+148%</div>
+          <div class="cs-metric-label">NMV Uplift (Women)</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value purple">+34%</div>
+          <div class="cs-metric-label">CR Uplift (Women)</div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-block">
+          <h4>The Problem</h4>
+          <p>ZALORA&#8217;s onsite banners relied on editorial/lifestyle imagery &#8212; aspirational but abstract.
+            Users scanned past banners without engaging because the creative didn&#8217;t show them <em>what they could
+              buy</em>.</p>
+        </div>
+        <div class="cs-block">
+          <h4>The Hypothesis</h4>
+          <p>Showing actual product SKUs (real items at real prices) would outperform editorial imagery by reducing
+            cognitive load. Users scan banners in ~2.6 seconds &#8212; SKU imagery provides faster comprehension.</p>
+        </div>
+        <div class="cs-block cs-block-full">
+          <h4>Iteration Timeline</h4>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">MAY 2022 &#183; WOMEN</div>
+              <div class="timeline-desc">Initial 1-day test. SKU-led vs Editorial. Massive uplift confirmed.</div>
+              <div class="timeline-result">+435% CTR &#183; +148% NMV &#183; +34% CR</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">MAY 2022 &#183; MEN</div>
+              <div class="timeline-desc">Same-day test on Men segment. Strong uplift across all metrics.</div>
+              <div class="timeline-result">+206% CTR &#183; +26% NMV &#183; +31% CR</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">FEB 2023 &#183; EXTENDED 4-DAY</div>
+              <div class="timeline-desc">Extended rerun. CTR held (+47% Women, +23% Men) but CR dropped due to high
+                click volume. <strong>Key learning: high CTR does not equal high CR at scale.</strong></div>
+              <div class="timeline-result">CTR held up &#183; CR dropped at volume</div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-block">
+          <h4>The Learning</h4>
+          <p>SKU-led creative drives dramatically higher engagement &#8212; but at volume, CR can decline as more
+            browsers enter the funnel. Solution: <strong>SKU banners for flash sales (high intent), editorial for
+              always-on (brand building)</strong>. Codified in ZALORA&#8217;s creative playbook.</p>
+        </div>
+        <div class="cs-block">
+          <h4>Why This Matters</h4>
+          <p>The extended rerun&#8217;s &#8220;failure&#8221; was equally valuable &#8212; it prevented a blanket
+            rollout that would have degraded CR. The output was a <strong>nuanced, context-dependent creative
+              strategy</strong>.</p>
+        </div>
+      </div>
+    </article>
+    <article class="case-study reveal">
+      <div class="cs-hero">
+        <div class="cs-number">CASE STUDY 02</div>
+        <h3 class="cs-title">Daily Style Feed &#8212; Personalized Discovery at Scale</h3>
+        <div class="cs-tags"><span class="cs-tag purple">Personalization</span><span class="cs-tag blue">Product
+            Strategy</span><span class="cs-tag gold">All Markets</span></div>
+      </div>
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <div class="cs-metric-value">52%</div>
+          <div class="cs-metric-label">Campaign CTR</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value blue">26.98%</div>
+          <div class="cs-metric-label">Standard RecFeed CTR</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value">31.7%</div>
+          <div class="cs-metric-label">Add-to-Cart Rate</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value purple">5.5%</div>
+          <div class="cs-metric-label">Attributed Purchase Rate</div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-block">
+          <h4>The Problem</h4>
+          <p>Standard homepage RecFeed: 26.98% CTR, 28.29% add-to-cart &#8212; plateauing. Users with zero or low
+            product detail views were bouncing without discovering products.</p>
+        </div>
+        <div class="cs-block">
+          <h4>The Solution</h4>
+          <p>Built a dedicated <strong>&#8220;Daily Style Feed&#8221;</strong> on the app home screen &#8212; curated,
+            campaign-aligned, full content flexibility. Routed low/zero-PDV users via dedicated onsite pages. Pure
+            product-first discovery.</p>
+        </div>
+        <div class="cs-block cs-block-full">
+          <h4>Architecture</h4>
+          <ul>
+            <li>Discovery engine on app home screen with personalized product exposure</li>
+            <li>Full content flexibility &#8212; no category or homepage logic constraints</li>
+            <li>Low-PDV user routing via dedicated onsite pages</li>
+            <li>Social media channels augmenting awareness and traffic</li>
+            <li><strong>Rolled out live across all ZALORA markets</strong></li>
+          </ul>
+        </div>
+        <div class="cs-block">
+          <h4>The Results</h4>
+          <p>Nearly <strong>doubled CTR</strong> vs standard RecFeed (52% vs 26.98%). Full funnel: 48.5% product click
+            &#8594; 98.5% to product view &#8594; 30.9% PDP-to-cart &#8594; 5.5% attributed purchase. Now permanent
+            across all markets.</p>
+        </div>
+        <div class="cs-block">
+          <h4>Why This Matters</h4>
+          <p>Not a one-off test &#8212; a <strong>permanent product</strong> live across every ZALORA market. A
+            structural improvement to product discovery infrastructure.</p>
+        </div>
+      </div>
+    </article>
+    <article class="case-study reveal">
+      <div class="cs-hero">
+        <div class="cs-number">CASE STUDY 03</div>
+        <h3 class="cs-title">Voucher Mechanics &#8212; CTA vs Code Display</h3>
+        <div class="cs-tags"><span class="cs-tag gold">CRO</span><span class="cs-tag">A/B Test Series</span><span
+            class="cs-tag blue">3 Iterations</span></div>
+      </div>
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <div class="cs-metric-value">+48%</div>
+          <div class="cs-metric-label">NMV Uplift (Best)</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value blue">+14.53%</div>
+          <div class="cs-metric-label">Total CTR Uplift</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value">+9%</div>
+          <div class="cs-metric-label">CR Uplift (Flash)</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value purple">3 tests</div>
+          <div class="cs-metric-label">Iterated Validation</div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-block">
+          <h4>The Problem</h4>
+          <p>Voucher banners displayed promo codes directly. Was showing the code upfront helping conversion, or adding
+            visual noise and reducing click incentive?</p>
+        </div>
+        <div class="cs-block">
+          <h4>The Hypothesis</h4>
+          <p>Removing the visible code and adding a clear CTA (&#8220;Shop Now&#8221;) would increase CTR and CR by
+            creating stronger forward momentum. Code auto-applies at checkout.</p>
+        </div>
+        <div class="cs-block cs-block-full">
+          <h4>Iteration Timeline</h4>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">APR 17, 2023 &#183; FLASH SALE</div>
+              <div class="timeline-desc">First test: CTA banner vs Code banner. 1&#8211;7 PM flash. Women/Men/Kids.
+              </div>
+              <div class="timeline-result">+14.53% CTR &#183; +9% CR &#183; +14% NMV</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">APR 20, 2023 &#183; FLASH V2</div>
+              <div class="timeline-desc">Repeat with different time window (2&#8211;8 PM). Confirmed direction.</div>
+              <div class="timeline-result">+6.98% CTR &#183; +6% CR &#183; +48% NMV</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">MAY 2&#8211;4, 2023 &#183; BASELINE</div>
+              <div class="timeline-desc">Extended 1-week baseline. Validated effect holds beyond flash urgency.</div>
+              <div class="timeline-result">+4.69% CTR &#183; +2% CR &#183; +48% NMV</div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-block">
+          <h4>The Learning</h4>
+          <p>&#8220;Without Code + CTA&#8221; won across <strong>all three iterations</strong>. Not a novelty effect.
+            Now standard for voucher campaigns.</p>
+        </div>
+        <div class="cs-block">
+          <h4>Why This Matters</h4>
+          <p>Demonstrates <strong>iterated validation</strong> &#8212; three progressively different conditions. A small
+            UX change unlocked double-digit revenue uplift at zero cost.</p>
+        </div>
+      </div>
+    </article>
+    <article class="case-study reveal">
+      <div class="cs-hero">
+        <div class="cs-number">CASE STUDY 04</div>
+        <h3 class="cs-title">n8n Marketing Automation &#8212; From Manual to 1,188% ROI</h3>
+        <div class="cs-tags"><span class="cs-tag gold">Automation</span><span class="cs-tag purple">AI
+            Integration</span><span class="cs-tag blue">CEO-Approved</span></div>
+      </div>
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <div class="cs-metric-value">1,188%</div>
+          <div class="cs-metric-label">First-Year ROI</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value blue">0.93 mo</div>
+          <div class="cs-metric-label">Payback Period</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value">156 hrs</div>
+          <div class="cs-metric-label">Annual Hours Saved</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value purple">&#8364;10K+</div>
+          <div class="cs-metric-label">Uplift Protected/yr</div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-block">
+          <h4>The Problem</h4>
+          <p>App Grid content across 6 segments updated manually every week &#8212; 30 min/segment, 3 hours/cycle.
+            Error-prone, timing risks for critical campaigns. Scaling to 10+ segments was unsustainable.</p>
+        </div>
+        <div class="cs-block">
+          <h4>The Solution</h4>
+          <p>Built an n8n workflow: ingest approved copy &#8594; validate segment mapping &#8594; transform to API
+            schema &#8594; batch update with retry, logging, Slack alerts, and rollback. Also built a trend intelligence
+            pipeline (n8n + GPT + TikTok + Pinterest).</p>
+        </div>
+        <div class="cs-block cs-block-full">
+          <h4>Business Case</h4>
+          <ul>
+            <li><strong>Build cost:</strong> &#8364;920 (10 mandays)</li>
+            <li><strong>Labour savings:</strong> &#8364;936/year (156 hours eliminated)</li>
+            <li><strong>Campaign uplift protected:</strong> &#8364;10,000/year (5 campaigns &#215; &#8364;200K &#215;
+              1%)</li>
+            <li><strong>Error reduction:</strong> &#8364;216/year</li>
+            <li><strong>Scalability:</strong> &#8364;624/year (4 new segments, no headcount)</li>
+            <li><strong>Net first-year return:</strong> &#8364;10,928 &#8212; <strong>1,187.8% ROI</strong></li>
+          </ul>
+        </div>
+        <div class="cs-block">
+          <h4>The Learning</h4>
+          <p>The biggest win was <strong>protecting campaign timing</strong>. Reframing from &#8220;saves 3
+            hours/week&#8221; to &#8220;protects &#8364;10K/year&#8221; got CEO approval. Always tie automation to
+            revenue impact.</p>
+        </div>
+        <div class="cs-block">
+          <h4>Why This Matters</h4>
+          <p>Shows ability to <strong>think commercially about technical solutions</strong> &#8212; building both the
+            ROI model and the actual implementation.</p>
+        </div>
+      </div>
+    </article>
+    <article class="case-study reveal">
+      <div class="cs-hero">
+        <div class="cs-number">BONUS</div>
+        <h3 class="cs-title">CRM Reactivation &#8212; 2x Click-Through Uplift</h3>
+        <div class="cs-tags"><span class="cs-tag purple">CRM</span><span class="cs-tag">Personalization</span><span
+            class="cs-tag blue">Multi-Market</span></div>
+      </div>
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <div class="cs-metric-value">2x</div>
+          <div class="cs-metric-label">CTR Uplift</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value blue">0.70&#8594;1.49%</div>
+          <div class="cs-metric-label">Before &#8594; After</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value">50%</div>
+          <div class="cs-metric-label">Click-to-Browse</div>
+        </div>
+        <div class="cs-metric">
+          <div class="cs-metric-value purple">29%</div>
+          <div class="cs-metric-label">Browse-to-ATC</div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-block">
+          <h4>The Problem</h4>
+          <p>Reactivation campaigns for app-installed users delivered 0.70% CTR &#8212; generic messaging didn&#8217;t
+            account for user behavior. High install base, low re-engagement.</p>
+        </div>
+        <div class="cs-block">
+          <h4>The Solution</h4>
+          <p>Revamped with personalized messaging and product recs tailored to browse/purchase history. Doubled CTR to
+            1.49% (PH/ID), up to <strong>4% in SG, MY, HK</strong>. Downstream: 50% click-to-browse, 29% browse-to-ATC
+            &#8212; genuine intent, not empty clicks.</p>
+        </div>
+      </div>
+    </article>
+  </section>
+  <div class="divider">
+    <hr>
+  </div>
+  <section class="section" id="approach">
+    <div class="reveal">
+      <div class="section-label">Methodology</div>
+      <div class="section-title">How I Work</div>
+      <p class="section-desc">Every experiment follows the same discipline &#8212; whether it&#8217;s a 3-hour flash
+        test or a multi-market product launch.</p>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-card reveal reveal-delay-1">
+        <div class="approach-num">01</div>
+        <h4>Observe &amp; Hypothesize</h4>
+        <p>Start with data, not opinions. Identify underperforming metrics, segment the problem, form a testable
+          hypothesis grounded in user behavior.</p>
+      </div>
+      <div class="approach-card reveal reveal-delay-2">
+        <div class="approach-num">02</div>
+        <h4>Test with Discipline</h4>
+        <p>Controlled experiments with clean segmentation &#8212; platform, audience, and duration defined upfront. I
+          iterate across conditions to validate results are robust.</p>
+      </div>
+      <div class="approach-card reveal reveal-delay-3">
+        <div class="approach-num">03</div>
+        <h4>Scale &amp; Codify</h4>
+        <p>Winning patterns become playbooks. Learnings documented so one test in PH benefits SG, ID, MY, and HK without
+          re-running.</p>
+      </div>
+    </div>
+  </section>
+  <footer class="footer" id="contact">
+    <div class="footer-orb"></div>
+    <div class="footer-content reveal">
+      <div class="footer-name">Sheryl B. Broqueza</div>
+      <div class="footer-role">Senior Manager &#8212; Campaign, CRM &amp; Web &#183; ZALORA Group<br>Manila, Philippines
+      </div>
+      <div class="footer-links"><a href="mailto:sbroqueza13@gmail.com" class="footer-link">Email</a><a
+          href="https://www.linkedin.com/in/sheryl-broqueza/" target="_blank" class="footer-link">LinkedIn</a></div>
+      <div class="footer-open">Open to Singapore relocation &#183; Employment Pass ready</div>
+    </div>
+  </footer>
+  <script>
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible') }) }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.nav a').forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); const target = document.querySelector(link.getAttribute('href')); if (target) target.scrollIntoView({ behavior: 'smooth' }) }) });
+  </script>
+</body>
+
+</html>
